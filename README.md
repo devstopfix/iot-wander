@@ -11,3 +11,8 @@ My first Elixir project! An experiment building an IoT solution using [Elixir](h
 
 * Learn Elixir
 * Plot how many actors can run in a single VM against throughput rates
+
+
+## Libraries
+
+* QuickCheck - https://github.com/parroty/excheck
