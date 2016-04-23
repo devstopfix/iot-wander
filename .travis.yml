@@ -1,0 +1,7 @@
+language: elixir
+
+elixir:
+  - 1.2.0
+
+branch:
+  - travis
