@@ -1,7 +1,6 @@
 defmodule MAC do
   @moduledoc """
-  Functions for working with MAC Addresses
-  See https://en.wikipedia.org/wiki/MAC_address
+  Functions for working with [MAC Addresses](https://en.wikipedia.org/wiki/MAC_address).
   """
 
   @doc """

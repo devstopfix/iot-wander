@@ -15,7 +15,7 @@ My first Elixir project! An experiment building an IoT solution using [Elixir](h
 
 To build an Elixir project:
 
-    min compile
+    mix compile
 
 To run the tests:
 
@@ -28,6 +28,15 @@ To run a single test at line 41:
 To start an interactive shell:
 
     iex
+
+## Documentation
+
+See this [README](README.md) and the [docs](doc/index.html).
+
+To generate the HTML documentation from the source code:
+
+    mix docs
+    open doc/index.html
 
 # Libraries
 
