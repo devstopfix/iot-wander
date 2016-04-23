@@ -1,6 +1,8 @@
 # Wandering IoT
 
-An example application that triagulates the positions of [IoT](https://en.wikipedia.org/wiki/Internet_of_Things) devices.
+[![Build Status](https://travis-ci.org/devstopfix/iot-wander.svg?branch=travis)](https://travis-ci.org/devstopfix/iot-wander)
+
+A web service that triagulates the positions of [IoT](https://en.wikipedia.org/wiki/Internet_of_Things) devices.
 
 ## Rationale
 
@@ -11,11 +13,15 @@ My first Elixir project! An experiment building an IoT solution using [Elixir](h
 * Learn Elixir
 * Plot how many actors can run in a single VM against throughput rates
 
-# Build
+# Project
+
+## Build
 
 To build an Elixir project:
 
     min compile
+
+## Test
 
 To run the tests:
 
@@ -25,6 +31,8 @@ To run a single test at line 41:
 
     mix test test/mac_test.exs:41
 
+## Dev
+
 To start an interactive shell:
 
     iex
@@ -32,3 +40,7 @@ To start an interactive shell:
 # Libraries
 
 * QuickCheck - https://github.com/parroty/excheck
+
+# Credits
+
+* [Travis CI](https://docs.travis-ci.com/user/languages/elixir/)
