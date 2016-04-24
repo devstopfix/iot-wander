@@ -37,7 +37,7 @@ To run the tests:
 
 To run a single test at line 41:
 
-    mix test test/mac_test.exs:41
+    mix test test/wander/api/api_test.exs
 
 ## Run
 
@@ -59,14 +59,6 @@ To close the program:
 To start an interactive shell and run the web server:
 
     iex -S mix
-
-        c "lib/wander_plug.ex"
-
-        {:ok, _} = Plug.Adapters.Cowboy.http WanderPlug, []
-
-To test the API:
-
-    curl -v http://localhost:4000/
 
 ## Documentation
 

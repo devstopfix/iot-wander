@@ -4,10 +4,10 @@
 # This is a lot of code to test a one-line function however this is my
 # first Elixir module and the first use of ExCheck.
 #
-defmodule MacTest do
+defmodule IEEE.MacTest do
   use ExUnit.Case, async: false
   use ExCheck
-  doctest MAC
+  doctest IEEE.MAC
 
   ## Helper functions only for the test cases
 
@@ -39,7 +39,7 @@ defmodule MacTest do
   # Most random strings will not be MAC addresses (mostly)
   property :strings_are_not_mac_addresses do
     for_all s in unicode_string do
-      assert MAC.valid_mac_48?(Enum.join(s)) == false, s
+      assert IEEE.MAC.valid_mac_48?(Enum.join(s)) == false, s
       # TODO why do we need Enum.join(s) ?
     end
   end
@@ -48,7 +48,7 @@ defmodule MacTest do
   property :valid_mac_addresses do
     for_all {a,b,c,d,e,f} in {byte,byte,byte,byte,byte,byte}  do
       s = mac_of_bytes([a,b,c,d,e,f])
-      assert MAC.valid_mac_48?(s) == true, s
+      assert IEEE.MAC.valid_mac_48?(s) == true, s
     end
   end
 
@@ -58,30 +58,30 @@ defmodule MacTest do
   property :some_valid_mac_addresses do
     for_all bs in list(byte) do
       mac = mac_of_bytes(bs)
-      assert MAC.valid_mac_48?(mac) == ((length bs) == 6), mac
+      assert IEEE.MAC.valid_mac_48?(mac) == ((length bs) == 6), mac
     end
   end
 
   # Unit tests
 
   test "zero mac address is valid" do
-    assert MAC.valid_mac_48?("00:00:00:00:00:00") == true
+    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00:00") == true
   end
 
   test "non-hexadecimal mac address is invalid" do
-    assert MAC.valid_mac_48?("0K:00:00:00:00:00") == false
+    assert IEEE.MAC.valid_mac_48?("0K:00:00:00:00:00") == false
   end
 
   test "short mac address is invalid" do
-    assert MAC.valid_mac_48?("00:00:00:00:00") == false
+    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00") == false
   end
 
   test "long mac address is invalid" do
-    assert MAC.valid_mac_48?("00:00:00:00:00:000") == false
+    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00:000") == false
   end
 
   test "empty string is invalid" do
-    assert MAC.valid_mac_48?("") == false
+    assert IEEE.MAC.valid_mac_48?("") == false
   end
 
 end

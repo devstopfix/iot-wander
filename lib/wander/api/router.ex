@@ -1,4 +1,4 @@
-defmodule AppRouter do
+defmodule Wander.API.Router do
   use Plug.Router
 
   plug :match
