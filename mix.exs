@@ -3,7 +3,7 @@ defmodule Wander.Mixfile do
 
   def project do
     [app: :wander,
-     version: "0.1.1",
+     version: "0.1.2",
      elixir: "~> 1.2.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -15,7 +15,7 @@ defmodule Wander.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [applications: [:cowboy, :plug, :logger],
-     mod: {WanderApp, []},
+     mod: {Wander.API.App, []},
      env: [cowboy_port: 4000]]
   end
 

@@ -1,16 +1,16 @@
-# mix test test/wander_plug_test.exs
-defmodule WanderPlugTest do
+# mix test test/wander/api/api_test.exs
+defmodule Wander.API.APITest do
   use ExUnit.Case, async: true
   use Plug.Test
 
-  @opts AppRouter.init([])
+  @opts Wander.API.Router.init([])
 
   test "returns hello world" do
     # Create a test connection
     conn = conn(:get, "/hello")
 
     # Invoke the plug
-    conn = AppRouter.call(conn, @opts)
+    conn = Wander.API.Router.call(conn, @opts)
 
     # Assert the response and status
     assert conn.state == :sent
@@ -23,7 +23,7 @@ defmodule WanderPlugTest do
     conn = conn(:get, "/other")
 
     # Invoke the plug
-    conn = AppRouter.call(conn, @opts)
+    conn = Wander.API.Router.call(conn, @opts)
 
     # Assert the response and status
     assert conn.state == :sent
