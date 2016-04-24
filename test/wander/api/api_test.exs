@@ -5,30 +5,42 @@ defmodule Wander.API.APITest do
 
   @opts Wander.API.Router.init([])
 
-  test "returns hello world" do
-    # Create a test connection
-    conn = conn(:get, "/hello")
+  # Valid hub
 
-    # Invoke the plug
+  test "can POST to a hub" do
+    conn = conn(:post, "/hub/01:23:45:67:89:AB")
     conn = Wander.API.Router.call(conn, @opts)
-
-    # Assert the response and status
     assert conn.state == :sent
-    assert conn.status == 200
-    assert conn.resp_body == "Welcome"
+    assert conn.status == 202
+    assert conn.resp_body == "Accepted"
   end
 
-  test "invalid route" do
-    # Create a test connection
-    conn = conn(:get, "/other")
+  # Invalid hub
 
-    # Invoke the plug
+  test "cannot POST to root of hub" do
+    conn = conn(:post, "/hub")
     conn = Wander.API.Router.call(conn, @opts)
-
-    # Assert the response and status
     assert conn.state == :sent
-    assert conn.status == 404
-    assert conn.resp_body == "oops"
+    assert conn.status == 400
+    assert conn.resp_body == "Routes: /hub"
+  end
+
+  # Other routes
+
+  test "invalid route gives 400 Bad Request" do
+    conn = conn(:get, "/other")
+    conn = Wander.API.Router.call(conn, @opts)
+    assert conn.state == :sent
+    assert conn.status == 400
+    assert conn.resp_body == "Routes: /hub"
+  end
+
+  test "root gives 400 Bad Request" do
+    conn = conn(:get, "/")
+    conn = Wander.API.Router.call(conn, @opts)
+    assert conn.state == :sent
+    assert conn.status == 400
+    assert conn.resp_body == "Routes: /hub"
   end
 
 end
