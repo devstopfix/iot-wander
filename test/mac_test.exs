@@ -1,5 +1,8 @@
 #
-# Verify the MAC address functions
+# Verify the MAC address functions.
+#
+# This is a lot of code to test a one-line function however this is my
+# first Elixir module and the first use of ExCheck.
 #
 defmodule MacTest do
   use ExUnit.Case, async: false
@@ -66,7 +69,7 @@ defmodule MacTest do
   end
 
   test "non-hexadecimal mac address is invalid" do
-    assert MAC.valid_mac_48?("0G:00:00:00:00:00") == false
+    assert MAC.valid_mac_48?("0K:00:00:00:00:00") == false
   end
 
   test "short mac address is invalid" do
