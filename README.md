@@ -89,6 +89,10 @@ The API provides this resource:
 * 404 Not Found - your resource structure is valid but does not exist (e.g. unknown MAC address)
 * 405 Method Not Allowed - e.g. you are trying to GET a resource that only allows POST. See the resource definitions above
 
+# Reports
+
+* [Benchmarks](reports/ab.md)
+
 # Libraries used
 
 * [ExCheck](https://github.com/parroty/excheck) - property based testing
