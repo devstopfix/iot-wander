@@ -49,6 +49,11 @@ To test the API:
 
     curl -v http://localhost:4000/
 
+To close the program:
+
+    [ctrl]-[c]
+    a (abort)
+
 ## Dev
 
 To start an interactive shell and run the web server:

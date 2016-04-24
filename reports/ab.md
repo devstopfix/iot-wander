@@ -10,12 +10,12 @@ Flags:
 
 The command:
 
-    ab -k -n 100000 -c 64 http://0.0.0.0:8080/hello
+    ab -k -n 100000 -c 64 http://0.0.0.0:4000/hello
 
 ## Report
 
 ```
-ab -k -n 100000 -c 64 http://0.0.0.0:8080/hello
+ab -k -n 100000 -c 64 http://0.0.0.0:4000/hello
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
 Licensed to The Apache Software Foundation, http://www.apache.org/
@@ -36,7 +36,7 @@ Finished 100000 requests
 
 Server Software:
 Server Hostname:        0.0.0.0
-Server Port:            8080
+Server Port:            4000
 
 Document Path:          /hello
 Document Length:        7 bytes
