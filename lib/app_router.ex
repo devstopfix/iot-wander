@@ -5,12 +5,11 @@ defmodule AppRouter do
   plug :dispatch
 
   get "/hello" do
-    send_resp(conn, 200, "world")
+    send_resp(conn, 200, "Welcome")
   end
-
-  #forward "/users", to: UsersRouter
 
   match _ do
     send_resp(conn, 404, "oops")
   end
+
 end

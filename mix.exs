@@ -14,7 +14,9 @@ defmodule Wander.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:cowboy, :plug, :logger]]
+    [applications: [:cowboy, :plug, :logger],
+     mod: {WanderApp, []},
+     env: [cowboy_port: 4000]]
   end
 
   # Dependencies can be Hex packages:

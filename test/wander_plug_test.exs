@@ -15,6 +15,6 @@ defmodule WanderPlugTest do
     # Assert the response and status
     assert conn.state == :sent
     assert conn.status == 200
-    assert conn.resp_body == "world"
+    assert conn.resp_body == "Welcome"
   end
 end

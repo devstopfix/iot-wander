@@ -39,6 +39,16 @@ To run a single test at line 41:
 
     mix test test/mac_test.exs:41
 
+## Run
+
+To run a local API:
+
+    mix run --no-halt
+
+To test the API:
+
+    curl -v http://localhost:4000/
+
 ## Dev
 
 To start an interactive shell and run the web server:
