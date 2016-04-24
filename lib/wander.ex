@@ -1,2 +1,0 @@
-defmodule Wander do
-end
