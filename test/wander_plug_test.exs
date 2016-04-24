@@ -17,4 +17,18 @@ defmodule WanderPlugTest do
     assert conn.status == 200
     assert conn.resp_body == "Welcome"
   end
+
+  test "invalid route" do
+    # Create a test connection
+    conn = conn(:get, "/other")
+
+    # Invoke the plug
+    conn = AppRouter.call(conn, @opts)
+
+    # Assert the response and status
+    assert conn.state == :sent
+    assert conn.status == 404
+    assert conn.resp_body == "oops"
+  end
+
 end
