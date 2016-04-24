@@ -3,7 +3,7 @@ defmodule Wander.Mixfile do
 
   def project do
     [app: :wander,
-     version: "0.0.3",
+     version: "0.2.0",
      elixir: "~> 1.2.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -14,7 +14,9 @@ defmodule Wander.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:cowboy, :plug, :logger],
+     mod: {Wander.API.App, []},
+     env: [cowboy_port: 4000]]
   end
 
   # Dependencies can be Hex packages:
@@ -27,10 +29,9 @@ defmodule Wander.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [
-      {:excheck, "~> 0.3", only: :test},
+    [ {:excheck, "~> 0.3", only: :test},
       {:triq, github: "krestenkrab/triq", only: :test},
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.11", only: :dev}]
+      {:cowboy, "~> 1.0.0"}, {:plug, "== 1.1.3"},
+      {:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev} ]
   end
 end

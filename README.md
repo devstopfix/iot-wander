@@ -37,13 +37,28 @@ To run the tests:
 
 To run a single test at line 41:
 
-    mix test test/mac_test.exs:41
+    mix test test/wander/api/api_test.exs
+
+## Run
+
+To run a local API:
+
+    mix run --no-halt
+
+To test the API:
+
+    curl -v http://localhost:4000/
+
+To close the program:
+
+    [ctrl]-[c]
+    a (abort)
 
 ## Dev
 
-To start an interactive shell:
+To start an interactive shell and run the web server:
 
-    iex
+    iex -S mix
 
 ## Documentation
 
@@ -54,9 +69,32 @@ To generate the HTML documentation from the source code:
     mix docs
     open doc/index.html
 
-# Libraries
+# API
 
-* [QuickCheck](https://github.com/parroty/excheck)
+The web service provides a RESTful API over HTTPS. 
+
+## Resources
+
+The API provides this resource:
+
+* `/hub/{MAC}` - the endpoint to which a HUB can POST it's data
+
+## Status codes
+
+* 202 Accepted - your request has been received and stored for processing
+* 400 Bad Request - your request was to a bad resource URL, or the content was invalid (e.g. invalid JSON)
+* 404 Not Found - your resource structure is valid but does not exist (e.g. unknown MAC address)
+* 405 Method Not Allowed - e.g. you are trying to GET a resource that only allows POST. See the resource definitions above
+
+# Reports
+
+* [Benchmarks](reports/ab.md)
+
+# Libraries used
+
+* [ExCheck](https://github.com/parroty/excheck) - property based testing
+* [Cowboy](https://github.com/ninenines/cowboy) - the de facto HTTP server for Erlang
+* [Plug](https://github.com/elixir-lang/plug) - an Elixir library to build web applicationds
 
 # Credits
 

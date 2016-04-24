@@ -1,4 +1,4 @@
-defmodule MAC do
+defmodule IEEE.MAC do
   @moduledoc """
   Functions for working with [MAC Addresses](https://en.wikipedia.org/wiki/MAC_address).
   """
@@ -11,7 +11,7 @@ defmodule MAC do
 
   ## Example
 
-      iex> MAC.valid_mac_48?("01:23:45:67:89:AB")
+      iex> IEEE.MAC.valid_mac_48?("01:23:45:67:89:AB")
       true
   """
   def valid_mac_48?(mac) do
