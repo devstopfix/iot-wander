@@ -1,6 +1,6 @@
+# mix test test/wander/hubs/hub_test.ex
 defmodule Wander.Hubs.HubTest do
   use ExUnit.Case, async: true
-  #use ExCheck
   doctest Wander.Hubs.Hub
 
   test "Cannot convert a string to an unknown atom" do
