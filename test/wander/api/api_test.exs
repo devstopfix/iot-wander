@@ -22,7 +22,7 @@ defmodule Wander.API.APITest do
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
     assert conn.status == 400
-    assert conn.resp_body == "Invalid MAC-48 address"
+    assert conn.resp_body == "Invalid MAC-48"
   end
 
   test "cannot POST to root of hub" do

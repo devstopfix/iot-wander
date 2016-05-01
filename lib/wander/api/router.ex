@@ -8,7 +8,7 @@ defmodule Wander.API.Router do
     if IEEE.MAC.valid_mac_48?(mac) do
       send_resp(conn, 202, "Accepted")
     else
-      send_resp(conn, 400, "Invalid MAC-48 address")
+      send_resp(conn, 400, "Invalid MAC-48")
     end
   end
 
