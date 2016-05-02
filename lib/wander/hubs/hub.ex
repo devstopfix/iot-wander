@@ -8,14 +8,42 @@ defmodule Wander.Hubs.Hub do
 
   @doc """
   Echance `String.to_existing_atom` to return a tuple
-  and not throw an Exception.
+  and not throw an Exception. Converts string to its
+  corresponding atom but only if it already exists.
   """
   def to_existing_atom(s) do
     try do
       {true, String.to_existing_atom(s) }
     rescue
-      e in ArgumentError -> {false}
+      _ in ArgumentError -> {false}
     end
   end
+
+  @doc """
+  Spawn a new process that receives updates from a Hub
+  with the given MAC address.
+  """
+  def start(mac) do
+    spawn(Wander.Hubs.Hub, :loop, [])
+  end
+
+  def update() do
+    IO.puts("Received.")
+  end
+
+  def loop() do
+    receive do
+      {:update} -> 
+        update()
+        loop();
+      {:terminate} -> 
+        nil;
+      Any ->
+        loop();
+    end
+  end
+
+  #  pid = Wander.Hubs.Hub.start("")
+  #  send(pid, {:update})
 
 end
