@@ -31,7 +31,9 @@ defmodule IEEE.MacTest do
   # Convert a list of bytes into a string of two hexadecimal digits
   # separated by colons
   def mac_of_bytes(bs) do
-    Enum.map(bs, fn b -> hex(b) end) |> Enum.join(":")
+    bs
+      |> Enum.map(fn b -> hex(b) end)
+      |> Enum.join(":")
   end
 
   ## MAC Property Tests

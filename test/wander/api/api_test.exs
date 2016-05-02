@@ -41,7 +41,7 @@ defmodule Wander.API.APITest do
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
     assert conn.status == 400
-    assert conn.resp_body == "Routes: /hub"
+    assert conn.resp_body == "Unknown URL"
   end
 
   # Other routes
@@ -51,7 +51,7 @@ defmodule Wander.API.APITest do
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
     assert conn.status == 400
-    assert conn.resp_body == "Routes: /hub"
+    assert conn.resp_body == "Unknown URL"
   end
 
   test "root gives 400 Bad Request" do
@@ -59,7 +59,7 @@ defmodule Wander.API.APITest do
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
     assert conn.status == 400
-    assert conn.resp_body == "Routes: /hub"
+    assert conn.resp_body == "Unknown URL"
   end
 
 end
