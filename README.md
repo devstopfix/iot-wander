@@ -35,9 +35,9 @@ To run the tests:
 
     mix test
 
-To run a single test at line 41:
+To run a single test at line 10:
 
-    mix test test/wander/api/api_test.exs
+    mix test test/wander/api/api_test.exs:10
 
 ## Run
 
@@ -79,11 +79,18 @@ The API provides this resource:
 
 * `/hub/{MAC}` - the endpoint to which a HUB can POST it's data
 
+## Data types
+
+`MAC` addresses are currently only 48-bit mac addresses, represented as 6 hexadecimal words in uppercase separated by colons. e.g. `01:23:45:67:89:AB`
+
 ## Status codes
 
 * 202 Accepted - your request has been received and stored for processing
 * 400 Bad Request - your request was to a bad resource URL, or the content was invalid (e.g. invalid JSON)
 * 404 Not Found - your resource structure is valid but does not exist (e.g. unknown MAC address)
+
+Todo:
+
 * 405 Method Not Allowed - e.g. you are trying to GET a resource that only allows POST. See the resource definitions above
 
 # Reports

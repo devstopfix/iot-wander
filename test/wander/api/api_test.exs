@@ -8,6 +8,7 @@ defmodule Wander.API.APITest do
   # Valid hub
 
   test "can POST to a hub" do
+    _ = String.to_atom("01:23:45:67:89:AB")
     conn = conn(:post, "/hub/01:23:45:67:89:AB")
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
@@ -15,14 +16,24 @@ defmodule Wander.API.APITest do
     assert conn.resp_body == "Accepted"
   end
 
-  # Invalid hub
+  # Hub not registered
+
+  test "cannot POST to an unregistered hub" do
+    conn = conn(:post, "/hub/04:04:04:04:04:04")
+    conn = Wander.API.Router.call(conn, @opts)
+    assert conn.state == :sent
+    assert conn.status == 404
+    assert conn.resp_body == "Hub Not Found"
+  end
+
+  # Invalid Hub route
 
   test "cannot POST to an invalid MAC address" do
     conn = conn(:post, "/hub/0G:00:45:67:89:AB")
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
     assert conn.status == 400
-    assert conn.resp_body == "Invalid MAC-48 address"
+    assert conn.resp_body == "Invalid MAC-48"
   end
 
   test "cannot POST to root of hub" do
