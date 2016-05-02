@@ -31,6 +31,7 @@ defmodule Wander.Hub do
     if IEEE.MAC.valid_mac_48?(mac48) do
       hub = String.to_atom(mac48);
       GenServer.start_link(Wander.Hub, {:mac, mac48}, name: hub);
+      # TODO supervisor with a restart strategy of simple_one_for_one
     end
   end
 
@@ -43,10 +44,10 @@ defmodule Wander.Hub do
     {:reply, :ignored, state}
   end
 
-  #  {:ok, pid } = Wander.Hub.start("01:02:03:04:05:06")
-  #  Process.alive?(pid)
+  # {:ok, pid } = Wander.Hub.start("01:02:03:04:05:06")
+  # Process.alive?(pid)
   #
-  #  GenServer.call(pid, :update)
-  #  GenServer.call(String.to_atom("01:02:03:04:05:06"), :update)
-
+  # GenServer.call(pid, :update)
+  # GenServer.call(String.to_atom("01:02:03:04:05:06"), :update)
+  # GenServer.call(:"01:02:03:04:05:06", :update) 
 end
