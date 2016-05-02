@@ -1,4 +1,4 @@
-defmodule Wander.Hubs.Hub do
+defmodule Wander.Hub do
   @moduledoc """
   HUBs are the gateway between Things and the Wander platform.
   Clients are HUBs that POST data. Each client HUB is a process. 
@@ -24,7 +24,7 @@ defmodule Wander.Hubs.Hub do
   with the given MAC address.
   """
   def start(mac) do
-    spawn(Wander.Hubs.Hub, :loop, [])
+    spawn(Wander.Hub, :loop, [])
   end
 
   def update() do
