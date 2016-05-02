@@ -6,7 +6,10 @@ defmodule Wander.API.Router do
 
   post "/hub/:mac" do
     if IEEE.MAC.valid_mac_48?(mac) do
-      send_resp(conn, 202, "Accepted")
+      case Wander.Hubs.Hub.to_existing_atom(mac) do
+        {true, hubAtom} -> send_resp(conn, 202, "Accepted");
+        {false}         -> send_resp(conn, 404, "Hub Not Found");
+      end
     else
       send_resp(conn, 400, "Invalid MAC-48")
     end
