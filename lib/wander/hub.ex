@@ -1,4 +1,6 @@
 defmodule Wander.Hub do
+  use GenServer
+
   @moduledoc """
   HUBs are the gateway between Things and the Wander platform.
   Clients are HUBs that POST data. Each client HUB is a process. 
@@ -22,28 +24,29 @@ defmodule Wander.Hub do
   @doc """
   Spawn a new process that receives updates from a Hub
   with the given MAC address.
+  The server process is registered as the Atom of the MAC address,
+  which must be valid.
   """
-  def start(mac) do
-    spawn(Wander.Hub, :loop, [])
-  end
-
-  def update() do
-    IO.puts("Received.")
-  end
-
-  def loop() do
-    receive do
-      {:update} -> 
-        update()
-        loop();
-      {:terminate} -> 
-        nil;
-      Any ->
-        loop();
+  def start(mac48) do
+    if IEEE.MAC.valid_mac_48?(mac48) do
+      hub = String.to_atom(mac48);
+      GenServer.start_link(Wander.Hub, {:mac, mac48}, name: hub);
     end
   end
 
-  #  pid = Wander.Hubs.Hub.start("")
-  #  send(pid, {:update})
+  def handle_call(:update, _from, state) do
+    IO.puts("Received.");
+    {:reply, :ok, state}
+  end
+
+  def handle_call(_any, _from, state) do
+    {:reply, :ignored, state}
+  end
+
+  #  {:ok, pid } = Wander.Hub.start("01:02:03:04:05:06")
+  #  Process.alive?(pid)
+  #
+  #  GenServer.call(pid, :update)
+  #  GenServer.call(String.to_atom("01:02:03:04:05:06"), :update)
 
 end
