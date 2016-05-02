@@ -8,7 +8,7 @@ defmodule Wander.HubTest do
   end
 
   test "Can convert a string to an known atom" do
-    String.to_atom("KN:OW:NN")
+    _ = String.to_atom("KN:OW:NN")
     assert Wander.Hub.to_existing_atom("KN:OW:NN") == {true, :"KN:OW:NN" }
     assert Wander.Hub.to_existing_atom("KN:OW:NN") == {true, :"KN:OW:NN" }
   end
