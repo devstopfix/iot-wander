@@ -5,11 +5,11 @@
 # first Elixir module and the first use of ExCheck.
 #
 defmodule IEEE.MacTest do
-  use ExUnit.Case, async: false
+  use ExUnit.Case, async: true
   use ExCheck
   doctest IEEE.MAC
 
-  ## Helper functions only for the test cases
+  # Helper functions only for the test cases
 
   # Convert byte to 2-digit hexadecimal string
   #   10 -> "0A"
@@ -36,21 +36,22 @@ defmodule IEEE.MacTest do
       |> Enum.join(":")
   end
 
-  ## MAC Property Tests
+  # MAC Property Tests
 
   # Most random strings will not be MAC addresses (mostly)
   property :strings_are_not_mac_addresses do
     for_all s in unicode_string do
       assert IEEE.MAC.valid_mac_48?(Enum.join(s)) == false, s
-      # TODO why do we need Enum.join(s) ?
+      # TODO use refute here, but getting:
+      #      Expected truthy, got false
     end
   end
 
   # Any list of 6 bytes should be a valid MAC address
   property :valid_mac_addresses do
-    for_all {a,b,c,d,e,f} in {byte,byte,byte,byte,byte,byte}  do
-      s = mac_of_bytes([a,b,c,d,e,f])
-      assert IEEE.MAC.valid_mac_48?(s) == true, s
+    for_all {a, b, c, d, e, f} in {byte, byte, byte, byte, byte, byte} do
+      s = mac_of_bytes([a, b, c, d, e, f])
+      assert IEEE.MAC.valid_mac_48?(s), s
     end
   end
 
@@ -67,23 +68,23 @@ defmodule IEEE.MacTest do
   # Unit tests
 
   test "zero mac address is valid" do
-    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00:00") == true
+    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00:00")
   end
 
   test "non-hexadecimal mac address is invalid" do
-    assert IEEE.MAC.valid_mac_48?("0K:00:00:00:00:00") == false
+    refute IEEE.MAC.valid_mac_48?("0K:00:00:00:00:00")
   end
 
   test "short mac address is invalid" do
-    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00") == false
+    refute IEEE.MAC.valid_mac_48?("00:00:00:00:00")
   end
 
   test "long mac address is invalid" do
-    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00:000") == false
+    refute IEEE.MAC.valid_mac_48?("00:00:00:00:00:000")
   end
 
   test "empty string is invalid" do
-    assert IEEE.MAC.valid_mac_48?("") == false
+    refute IEEE.MAC.valid_mac_48?("")
   end
 
 end

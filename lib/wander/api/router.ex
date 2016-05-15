@@ -1,11 +1,16 @@
 defmodule Wander.API.Router do
   use Plug.Router
+  alias IEEE.MAC :as MAC
+
+  @moduledoc """
+  The RESTful API of this application.
+  """
 
   plug :match
   plug :dispatch
 
   post "/hub/:mac" do
-    if IEEE.MAC.valid_mac_48?(mac) do
+    if MAC.valid_mac_48?(mac) do
       case Hub.Server.publish(mac, "{}") do
         :ok        -> send_resp(conn, 202, "Accepted")
         :not_found -> send_resp(conn, 404, "Hub Not Found")

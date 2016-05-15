@@ -1,6 +1,10 @@
 defmodule Wander.API.App do
   use Application
 
+  @moduledoc """
+  The Wander IoT application. Responsible for starting all the processes.
+  """
+
   defp start_hubs(hubs) do
     Hub.Supervisor.start_link
     Enum.each(hubs, fn(hub) -> Hub.Supervisor.start_hub(hub) end)
@@ -18,4 +22,5 @@ defmodule Wander.API.App do
     Supervisor.start_link(children, strategy: :one_for_one)
 
   end
+
 end
