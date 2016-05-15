@@ -78,7 +78,7 @@ Find a Hub via `gproc`:
 
 Static code analysis tool:
 
-    mix credo
+    mix credo --strict
 
 Code style linter:
 
