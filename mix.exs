@@ -34,6 +34,7 @@ defmodule Wander.Mixfile do
       {:cowboy, "~> 1.0.0"}, {:plug, "== 1.1.3"},
       {:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev},
       {:gproc, "0.3.1"},
-      {:dogma, "~> 0.1", only: :dev} ]
+      {:dogma, "~> 0.1", only: :dev},
+      {:credo, "~> 0.3", only: [:dev, :test]} ]
   end
 end

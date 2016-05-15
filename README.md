@@ -76,6 +76,10 @@ Find a Hub via `gproc`:
 
 ## Quality
 
+Static code analysis tool:
+
+    mix credo
+
 Code style linter:
 
     mix dogma
