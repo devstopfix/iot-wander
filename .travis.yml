@@ -5,3 +5,6 @@ elixir:
 
 branch:
   - master
+
+before_script:
+  - mix credo
