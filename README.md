@@ -74,6 +74,11 @@ Find a Hub via `gproc`:
 
     #PID<0.290.0>
 
+## Quality
+
+Code style linter:
+
+    mix dogma
 
 ## Documentation
 
