@@ -6,12 +6,10 @@ defmodule Wander.API.Router do
 
   post "/hub/:mac" do
     if IEEE.MAC.valid_mac_48?(mac) do
-      case Wander.Hub.to_existing_atom(mac) do
-        {true, pid} -> 
-          GenServer.call(pid, :update)
-          send_resp(conn, 202, "Accepted");
-        {false} -> 
-          send_resp(conn, 404, "Hub Not Found");
+      case Hub.Server.publish(mac, "{}") do
+        :ok        -> send_resp(conn, 202, "Accepted")
+        :not_found -> send_resp(conn, 404, "Hub Not Found")
+        _          -> send_resp(conn, 500, "Server Error")
       end
     else
       send_resp(conn, 400, "Invalid MAC-48")

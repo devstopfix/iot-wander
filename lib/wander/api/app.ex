@@ -2,7 +2,8 @@ defmodule Wander.API.App do
   use Application
 
   defp start_hubs(hubs) do
-    Enum.each(hubs, fn(hub) -> Wander.Hub.start(hub) end)
+    Hub.Supervisor.start_link
+    Enum.each(hubs, fn(hub) -> Hub.Supervisor.start_hub(hub) end)
   end
 
   def start(_type, _args) do
