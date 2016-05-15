@@ -11,7 +11,6 @@ curl -v -X POST --header "Content-Type: application/json" \
   -d @reports/req.body.json \
   http://0.0.0.0:4000/hub/01:23:45:67:89:AB
 
-
 ```
 
 ## Run

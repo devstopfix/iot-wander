@@ -3,7 +3,7 @@ defmodule Wander.Mixfile do
 
   def project do
     [app: :wander,
-     version: "0.3.0",
+     version: "0.4.0",
      elixir: "~> 1.2.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -14,7 +14,7 @@ defmodule Wander.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:cowboy, :plug, :logger],
+    [applications: [:cowboy, :plug, :logger, :gproc],
      mod: {Wander.API.App, []},
      env: [cowboy_port: 4000]]
   end
@@ -32,6 +32,7 @@ defmodule Wander.Mixfile do
     [ {:excheck, "~> 0.3", only: :test},
       {:triq, github: "krestenkrab/triq", only: :test},
       {:cowboy, "~> 1.0.0"}, {:plug, "== 1.1.3"},
-      {:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev} ]
+      {:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev},
+      {:gproc, "0.3.1"} ]
   end
 end

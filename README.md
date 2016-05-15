@@ -60,6 +60,21 @@ To start an interactive shell and run the web server:
 
     iex -S mix
 
+Start some Hubs and send them a message:
+
+    Hub.Supervisor.start_link
+    Hub.Supervisor.start_hub("5B:00:00:00:00:01")
+    Hub.Supervisor.start_hub("5B:00:00:00:00:02")
+
+    Hub.Server.publish("5B:00:00:00:00:01", "")
+
+Find a Hub via `gproc`:
+
+    :gproc.where({:n, :l, {:hub, "5B:00:00:00:00:01"}})
+
+    #PID<0.290.0>
+
+
 ## Documentation
 
 See this [README](README.md) and the [docs](doc/index.html).
@@ -106,3 +121,4 @@ Todo:
 # Credits
 
 * [Travis CI](https://docs.travis-ci.com/user/languages/elixir/)
+* [Elixir Process Registry blog post](https://m.alphasights.com/process-registry-in-elixir-a-practical-example-4500ee7c0dcc#.mjkawpix8)
