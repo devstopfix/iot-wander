@@ -42,14 +42,15 @@ defmodule IEEE.MacTest do
   property :strings_are_not_mac_addresses do
     for_all s in unicode_string do
       assert IEEE.MAC.valid_mac_48?(Enum.join(s)) == false, s
-      # TODO why do we need Enum.join(s) ?
+      # TODO use refute here, but getting:
+      #      Expected truthy, got false
     end
   end
 
   # Any list of 6 bytes should be a valid MAC address
   property :valid_mac_addresses do
-    for_all {a,b,c,d,e,f} in {byte,byte,byte,byte,byte,byte} do
-      s = mac_of_bytes([a,b,c,d,e,f])
+    for_all {a, b, c, d, e, f} in {byte, byte, byte, byte, byte, byte} do
+      s = mac_of_bytes([a, b, c, d, e, f])
       assert IEEE.MAC.valid_mac_48?(s), s
     end
   end
@@ -71,19 +72,19 @@ defmodule IEEE.MacTest do
   end
 
   test "non-hexadecimal mac address is invalid" do
-    assert IEEE.MAC.valid_mac_48?("0K:00:00:00:00:00") == false
+    refute IEEE.MAC.valid_mac_48?("0K:00:00:00:00:00")
   end
 
   test "short mac address is invalid" do
-    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00") == false
+    refute IEEE.MAC.valid_mac_48?("00:00:00:00:00")
   end
 
   test "long mac address is invalid" do
-    assert IEEE.MAC.valid_mac_48?("00:00:00:00:00:000") == false
+    refute IEEE.MAC.valid_mac_48?("00:00:00:00:00:000")
   end
 
   test "empty string is invalid" do
-    assert IEEE.MAC.valid_mac_48?("") == false
+    refute IEEE.MAC.valid_mac_48?("")
   end
 
 end
