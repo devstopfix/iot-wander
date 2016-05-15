@@ -1,6 +1,10 @@
 defmodule Wander.API.Router do
   use Plug.Router
 
+  @moduledoc """
+  The RESTful API of this application.
+  """
+
   plug :match
   plug :dispatch
 
