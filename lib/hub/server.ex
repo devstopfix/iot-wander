@@ -1,16 +1,21 @@
 defmodule Hub.Server do
   use GenServer
 
+  @moduledoc """
+  A Hub process maintains the latest state broadcast from the
+  physical Hub device.
+  """
+
   def start_link(mac) do
     GenServer.start_link(__MODULE__, now(), name: via_tuple(mac))
   end
 
-  defp identify(mac) do 
+  defp identify(mac) do
     {:n, :l, {:hub, mac}}
   end
 
   # Generate a locally scoped(:l), unique name (:n) for a Hub
-  defp via_tuple(mac) do 
+  defp via_tuple(mac) do
     {:via, :gproc, identify(mac)}
   end
 
@@ -41,7 +46,7 @@ defmodule Hub.Server do
 
   # Util
 
-  def now() do
+  def now do
     :calendar.universal_time()
   end
 
