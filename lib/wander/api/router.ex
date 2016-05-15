@@ -1,6 +1,6 @@
 defmodule Wander.API.Router do
   use Plug.Router
-  alias IEEE.MAC :as MAC
+  alias IEEE.MAC, as: MAC
 
   @moduledoc """
   The RESTful API of this application.
