@@ -8,7 +8,6 @@ defmodule Wander.API.APITest do
   # Valid hub
 
   test "can POST to a hub" do
-    _ = String.to_atom("01:23:45:67:89:AB")
     conn = conn(:post, "/hub/01:23:45:67:89:AB")
     conn = Wander.API.Router.call(conn, @opts)
     assert conn.state == :sent
